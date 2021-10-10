@@ -51,13 +51,6 @@ fn main() {
         password: String::from("lsl001"),
         port: String::from("22"),
     });
-    server_name_dict.insert("liushuailong", ServerInfo{
-        server_name: String::from("liushuailong"),
-        user_name: String::from("slliu"),
-        ip_name: String::from("liushuailong.cn"),
-        password: String::from("slliu001"),
-        port: String::from("22"),
-    });
     server_name_dict.insert("slliu103", ServerInfo{
         server_name: String::from("slliu103"),
         user_name: String::from("slliu"),
@@ -70,5 +63,4 @@ fn main() {
         None => println!("此服务器名称不存在。"),
         Some(server_info) => ssh_to(server_info),
     }
-    // let server_info: &ServerInfo = server_info_option.unwrap();
 }
