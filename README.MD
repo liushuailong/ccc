@@ -1,5 +1,17 @@
 # 使用Rust实行自动登录服务器命令行工具
 
+## 使用
+
+```bash
+# 本程序只针对linux系统，其他系统未测试
+git clone 
+# 将站好密码填写到文件中
+cargo run
+将编译好的可执行文件·ccc·放到本地可执行环境中
+在终端执行
+ccc [server_name]
+```
+
 ## 功能
 
 - ccc server_name 实现登录服务器
