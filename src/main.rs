@@ -45,6 +45,7 @@ fn main()-> Result<(), Box<dyn Error>>{
     // 参数列表的长度
     // let args_len = args.len();
     let server_name: &str = &args[1];
+    // println!("{}", server_name);
     // 实现存储服务器信息的字典类型的结果
     let mut server_name_dict: HashMap<String, ServerInfo> = HashMap::new();
     let path: &str = "server_info.txt";
@@ -52,11 +53,26 @@ fn main()-> Result<(), Box<dyn Error>>{
         .delimiter(b'\t')
         .has_headers(true)
         .from_path(path)?;
-    let mut rdr_iter = rdr.deserialize();
-    if let Some(result) = rdr_iter.next() {
+    // todo: 如何实现循环？？？
+    let rdr_iter = rdr.deserialize();
+    for result in rdr_iter {
         let record: ServerInfo = result?;
         server_name_dict.insert(record.server_name.clone(), record);
     }
+    // if let Some(result) = rdr_iter.next() {
+    //     let record: ServerInfo = result?;
+    //     server_name_dict.insert(record.server_name.clone(), record);
+    // }
+
+    // if let Some(result) = rdr_iter.next() {
+    //     let record: ServerInfo = result?;
+    //     server_name_dict.insert(record.server_name.clone(), record);
+    // }
+
+    // if let Some(result) = rdr_iter.next() {
+    //     let record: ServerInfo = result?;
+    //     server_name_dict.insert(record.server_name.clone(), record);
+    // }
 
 
     // server_name_dict.insert("slliu102", ServerInfo{
@@ -66,7 +82,7 @@ fn main()-> Result<(), Box<dyn Error>>{
     //     password: String::from("lsl001"),
     //     port: String::from("22"),
     // });
-
+    // println!("{:?}", server_name_dict);
     let server_info_option: Option<&ServerInfo> = server_name_dict.get(server_name);
     match server_info_option {
         None => println!("此服务器名称不存在。"),
